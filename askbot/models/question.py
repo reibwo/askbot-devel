@@ -28,6 +28,7 @@ from askbot.models.post import Post, PostRevision
 from askbot.models.post import PostToGroup
 from askbot.models.user import Group, PERSONAL_GROUP_NAME_PREFIX
 from askbot.models import signals
+from askbot.models.book import Book, Chapter
 from askbot import const
 from askbot.utils.lists import LazyList
 from askbot.search import mysql
@@ -546,6 +547,7 @@ class Thread(models.Model):
     SUMMARY_CACHE_KEY_TPL = 'thread-question-summary-%d-%s'
     ANSWER_LIST_KEY_TPL = 'thread-answer-list-%d'
 
+    chapter = models.ForeignKey(Chapter)
     title = models.CharField(max_length=300)
 
     tags = models.ManyToManyField('Tag', related_name='threads')
