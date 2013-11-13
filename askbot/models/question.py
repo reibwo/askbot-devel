@@ -547,8 +547,9 @@ class Thread(models.Model):
     SUMMARY_CACHE_KEY_TPL = 'thread-question-summary-%d-%s'
     ANSWER_LIST_KEY_TPL = 'thread-answer-list-%d'
 
-    chapter = models.ForeignKey(Chapter)
-    title = models.CharField(max_length=300)
+    chapter = models.ForeignKey(Chapter, null=True)
+    verse_no = models.IntegerField(null=True)
+    title = models.CharField(max_length=300, null=True)
 
     tags = models.ManyToManyField('Tag', related_name='threads')
     groups = models.ManyToManyField(Group, through=ThreadToGroup, related_name='group_threads')
@@ -590,6 +591,7 @@ class Thread(models.Model):
     objects = ThreadManager()
 
     class Meta:
+        unique_together = ('chapter', 'verse_no')
         app_label = 'askbot'
 
     #property to support legacy themes in case there are.

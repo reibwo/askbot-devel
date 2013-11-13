@@ -21,6 +21,7 @@ class Book(models.Model):
 class Chapter(models.Model):
     book = models.ForeignKey('Book')
     num = models.IntegerField(blank=False)
+    name = models.CharField(max_length=300, blank=True)
     notes = models.TextField(blank=True)
     class Meta:
         unique_together = ('book', 'num',)    
