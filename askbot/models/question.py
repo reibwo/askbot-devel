@@ -549,7 +549,7 @@ class Thread(models.Model):
 
     chapter = models.ForeignKey(Chapter, null=True)
     verse_no = models.IntegerField(null=True)
-    title = models.CharField(max_length=300, null=True)
+    title = models.CharField(max_length=300, null=True, default='')
 
     tags = models.ManyToManyField('Tag', related_name='threads')
     groups = models.ManyToManyField(Group, through=ThreadToGroup, related_name='group_threads')
